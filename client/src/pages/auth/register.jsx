@@ -4,7 +4,7 @@ import { registerUser } from "@/store/auth-slice";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-
+import Swal from "sweetalert2";
 const initialState = {
   userName: "",
   email: "",
@@ -17,8 +17,29 @@ const AuthRegister = () => {
   const navigate = useNavigate();
 
   function onSubmit(event) {
-    event.preventDefaullt();
+    event.preventDefault();
+    console.log("res");
+
     dispatch(registerUser(formData)).then((data) => {
+      if (data?.payload?.success) {
+        Swal.fire({
+          title: "<h1 style='color: #4CAF50'>Registration Successful</h1>",
+          text: "Registration Successful, Welcome to Whimsy",
+          icon: "success",
+          confirmButtonText: "OK",
+          confirmButtonColor: "#4caf50",
+        }).then(() => {
+          navigate("/auth/login");
+        });
+      } else {
+        Swal.fire({
+          title: "Registration Failed!",
+          text:
+            data?.payload?.message || "Something went wrong, please try again.",
+          icon: "error",
+          confirmButtonText: "Try Again",
+        });
+      }
       console.log(data);
     });
   }

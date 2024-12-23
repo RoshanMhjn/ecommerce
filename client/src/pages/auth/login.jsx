@@ -1,18 +1,42 @@
 import AuthForm from "@/components/Common/AuthForm";
 import { loginFormControls } from "@/config";
+import { loginUser } from "@/store/auth-slice";
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const initialState = {
   email: "",
   password: "",
 };
 
-function onSubmit() {}
-
 const AuthLogin = () => {
   const [formData, setFormData] = useState(initialState);
+  const dispatch = useDispatch();
 
+  function onSubmit(e) {
+    e.preventDefault();
+    dispatch(loginUser(formData)).then((data) => {
+      if (data?.payload?.success) {
+        Swal.fire({
+          title: "<h1 style='color: #4CAF50'>Login Successful</h1>",
+          text: "Login successful, explore the world of Whimsy",
+          icon: "success",
+          confirmButtonText: "OK",
+          confirmButtonColor: "#4caf50",
+        });
+      } else {
+        Swal.fire({
+          title: "Login Failed!",
+          text:
+            data?.payload?.message || "Something went wrong, please try again.",
+          icon: "error",
+          confirmButtonText: "Try Again",
+        });
+      }
+    });
+  }
   return (
     <div className="mx-auto w-full max-w-md space-y-6">
       <div className="text-center">

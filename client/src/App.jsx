@@ -16,10 +16,21 @@ import ShoppingAccounts from "./pages/ShoppingView/ShoppingAccounts";
 import ShoppingCheckout from "./pages/ShoppingView/ShoppingCheckout";
 import CheckAuth from "./components/Common/CheckAuth";
 import Unauth from "./pages/UnauthPage/Unauth";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { checkAuth } from "./store/auth-slice";
 
 function App() {
-  const isAuthenticated = false;
-  const user = null;
+  const { isAuthenticated, user, isLoading } = useSelector(
+    (state) => state.auth
+  );
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(checkAuth());
+  }, [dispatch]);
+
+  if (isLoading) return <div>Loading...</div>;
 
   return (
     <div className="flex flex-col overflow-hidden bg-white">
