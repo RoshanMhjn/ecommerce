@@ -1,4 +1,4 @@
-import AuthForm from "@/components/Common/AuthForm";
+import AuthForm from "@/components/Common/CommonForm";
 import { loginFormControls } from "@/config";
 import { loginUser } from "@/store/auth-slice";
 import React, { useState } from "react";

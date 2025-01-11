@@ -11,7 +11,7 @@ import {
 import { Textarea } from "../ui/textarea";
 import { Button } from "../ui/button";
 
-const AuthForm = ({
+const CommonForm = ({
   formControls,
   formData,
   setFormData,
@@ -28,7 +28,7 @@ const AuthForm = ({
         element = (
           <Input
             name={getControlItem.name}
-            placeholder={getControlItem.placeholder}
+            placeholder={getControlItem.label}
             id={getControlItem.name}
             type={getControlItem.type}
             value={value}
@@ -124,4 +124,4 @@ const AuthForm = ({
   );
 };
 
-export default AuthForm;
+export default CommonForm;

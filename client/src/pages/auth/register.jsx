@@ -1,4 +1,4 @@
-import AuthForm from "@/components/Common/AuthForm";
+import AuthForm from "@/components/Common/CommonForm";
 import { registerFormControls } from "@/config";
 import { registerUser } from "@/store/auth-slice";
 import React, { useState } from "react";

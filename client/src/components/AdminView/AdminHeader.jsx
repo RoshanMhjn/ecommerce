@@ -1,9 +1,23 @@
-import React from 'react'
+import React from "react";
+import { Button } from "../ui/button";
+import { AlignJustify, LogOut } from "lucide-react";
 
-const AdminHeader = () => {
+const AdminHeader = ({ setOpen }) => {
   return (
-    <div>AdminHeader</div>
-  )
-}
+    <div className="flex items-center justify-between px-4 py-3 bg-background border-b">
+      <Button onClick={() => setOpen(true)} className="lg:hidden sm:block">
+        <AlignJustify />
+        <span className="sr-only">Toggle Menu</span>
+      </Button>
 
-export default AdminHeader
+      <div className="flex flex-1 justify-end">
+        <Button className="inline-flex gap-2 items-center rounded-md px-4 py2 text-sm font-medium shadow">
+          <LogOut />
+          Logout
+        </Button>
+      </div>
+    </div>
+  );
+};
+
+export default AdminHeader;
