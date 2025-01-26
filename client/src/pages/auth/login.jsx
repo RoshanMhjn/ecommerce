@@ -20,11 +20,12 @@ const AuthLogin = () => {
     dispatch(loginUser(formData)).then((data) => {
       if (data?.payload?.success) {
         Swal.fire({
-          title: "<h1 style='color: #4CAF50'>Login Successful</h1>",
-          text: "Login successful, explore the world of Whimsy",
-          icon: "success",
-          confirmButtonText: "OK",
-          confirmButtonColor: "#4caf50",
+          title: "Welcome to Whimsy",
+          imageUrl:
+            "http://res.cloudinary.com/dwrhqimh9/image/upload/v1737358260/kb90vz3s5qqqdcx4tuzi.jpg",
+          imageWidth: 300,
+          imageHeight: 300,
+          imageAlt: "whimsy bags logo",
         });
       } else {
         Swal.fire({

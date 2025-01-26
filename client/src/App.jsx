@@ -12,7 +12,7 @@ import ShoppingLayout from "./components/ShoppingView/ShoppingLayout";
 import Error from "./pages/404page/Error";
 import ShoppingHome from "./pages/ShoppingView/ShoppingHome";
 import ShoppingListings from "./pages/ShoppingView/ShoppingListings";
-import ShoppingAccounts from "./pages/ShoppingView/ShoppingAccounts";
+
 import ShoppingCheckout from "./pages/ShoppingView/ShoppingCheckout";
 import CheckAuth from "./components/Common/CheckAuth";
 import Unauth from "./pages/UnauthPage/Unauth";
@@ -20,6 +20,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { checkAuth } from "./store/auth-slice";
 import { Skeleton } from "@/components/ui/skeleton";
+import ShoppingAccount from "./pages/ShoppingView/ShoppingAccounts";
+import PaypalReturn from "./pages/ShoppingView/PaypalReturn";
+import PaymentSuccess from "./pages/ShoppingView/PaymentSuccess";
 
 function App() {
   const { isAuthenticated, user, isLoading } = useSelector(
@@ -36,6 +39,9 @@ function App() {
   return (
     <div className="flex flex-col overflow-hidden bg-white">
       <Routes>
+        <Route path="/" element={<AuthLayout />}>
+          <Route path="/" element={<AuthRegister />}></Route>
+        </Route>
         {/* login routes */}
         <Route
           path="/auth"
@@ -46,6 +52,7 @@ function App() {
           }
         >
           <Route path="login" element={<AuthLogin />}></Route>
+
           <Route path="register" element={<AuthRegister />}></Route>
         </Route>
 
@@ -77,8 +84,10 @@ function App() {
         >
           <Route path="home" element={<ShoppingHome />} />
           <Route path="listings" element={<ShoppingListings />} />
-          <Route path="accounts" element={<ShoppingAccounts />} />
+          <Route path="account" element={<ShoppingAccount />} />
           <Route path="checkout" element={<ShoppingCheckout />} />
+          <Route path="paypal-return" element={<PaypalReturn />} />
+          <Route path="payment-success" element={<PaymentSuccess />} />
         </Route>
         <Route path="*" element={<Error />} />
         <Route path="/unauth-page" element={<Unauth />} />
